@@ -229,10 +229,11 @@ const styles = {
   overlay: {
     position: "absolute",
     inset: 0,
-    background: "rgba(2, 6, 23, 0.8)",
+    background:
+    "linear-gradient(to bottom, rgba(2,6,23,0.6), rgba(2,6,23,0.85))",
   },
   title: {
-    color: "white",
+    color: "#f8fafc",
     fontSize: "3rem",
     fontWeight: "600",
     letterSpacing: "1px"
@@ -301,12 +302,13 @@ const styles = {
 },
 
 gameCard: {
-  background: "#111827",
   padding: "30px",
   borderRadius: "16px",
   textAlign: "center",
   boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-  minWidth: "320px"
+  minWidth: "320px",
+  background: "rgba(17, 24, 39, 0.85)",
+  backdropFilter: "blur(10px)",
 },
 
 backBtn: {
@@ -464,9 +466,9 @@ backBtn: {
           ← Back
         </button>
     <h1>Tic Tac Toe</h1>
-    <h3>You are: {mySymbol || "..."}</h3>
+    <h3 style={{ color: "#cbd5f5" }}>You are: {mySymbol || "..."}</h3>
 
-    <h3>
+    <h3 style={{ color: "#cbd5f5" }}>
       {winner
         ? "Game Over"
         : turn === mySymbol
