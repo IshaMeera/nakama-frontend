@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { Client } from "@heroiclabs/nakama-js";
 import "./index.css";
-const client = new Client("defaultkey", "127.0.0.1", "7350");
+const client = new Client("defaultkey", import.meta.env.VITE_BASE_URL, "443", true);
 
 export default function Game() {
   const [socket, setSocket] = useState(null);
