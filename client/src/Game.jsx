@@ -21,6 +21,7 @@ export default function Game() {
   const [roomCode, setRoomCode] = useState("");
   const [inputCode, setInputCode] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const hasInitialized = useRef(false);
   const myUserIdRef = useRef("");
@@ -124,6 +125,12 @@ export default function Game() {
     init();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const joinMatch = async (matchId) =>{
     if(!socket) return;
     const cleanId = matchId.trim().replace(/\s/g, "");
@@ -188,28 +195,42 @@ export default function Game() {
 
 const styles = {
   container: {
-    display: "flex",
     height: "100vh",
-    background: "#020617"
+    width: "100%",
+    backgroundImage: "url('/bgg.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
   },
 
   left: {
-    flex: 1,
+    position: "relative",
+    zIndex: 1,
+    maxWidth: "500px",
+    width: "100%",
+    margin: "0 auto",
+    padding: "20px",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    paddingLeft: "120px",
-    gap: 30
+    gap: 30,
+    alignItems: "center",
+    textAlign: "center",
   },
 
-  right: {
-    flex: 1,
-    backgroundImage: "url('/bgg.png')",
-    backgroundSize: "cover",
-    backgroundPosition: "center"
+  // right: {
+  //   flex: 1,
+  //   backgroundImage: "url('/bgg.png')",
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "center",
+  //   display: isMobile ? "none" : "block"
+  // },
+  overlay: {
+    position: "absolute",
+    inset: 0,
+    background: "rgba(2, 6, 23, 0.8)",
   },
-
   title: {
     color: "white",
     fontSize: "3rem",
@@ -301,6 +322,7 @@ backBtn: {
    if (screen === "lobby") {
   return (
     <div style={styles.container}>
+      <div style={styles.overlay}></div>
       <div style={styles.left}>
         <h1 style={styles.title}>Tic Tac Toe</h1>
 
@@ -366,7 +388,7 @@ backBtn: {
     <div
       onClick={(e) => e.stopPropagation()}
       style={{
-        background: "#111827",
+        background: "linear-gradient(to right, rgba(2,6,23,0.9), rgba(2,6,23,0.6))",
         padding: "30px 40px",
         borderRadius: "16px",
         textAlign: "center",
