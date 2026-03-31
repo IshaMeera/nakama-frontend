@@ -91,7 +91,7 @@ export default function Game() {
       );
 
       // socket connect
-      const socket = client.createSocket();
+      const socket = client.createSocket(true);
       await socket.connect(session, true);
 
       setSocket(socket);
