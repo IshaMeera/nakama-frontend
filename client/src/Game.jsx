@@ -21,7 +21,7 @@ export default function Game() {
   const [roomCode, setRoomCode] = useState("");
   const [inputCode, setInputCode] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  //const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const hasInitialized = useRef(false);
   const myUserIdRef = useRef("");
@@ -125,11 +125,11 @@ export default function Game() {
     init();
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // useEffect(() => {
+  //   const handleResize = () => setIsMobile(window.innerWidth < 768);
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   const joinMatch = async (matchId) =>{
     if(!socket) return;
@@ -195,9 +195,9 @@ export default function Game() {
 
 const styles = {
   container: {
-    height: "100vh",
+    height: "100dvh",
     width: "100%",
-    backgroundImage: "url('/bgg.png')",
+    backgroundImage: "url('/bggg.png')",
     backgroundSize: "cover",
     backgroundPosition: "center",
     display: "flex",
@@ -294,7 +294,7 @@ const styles = {
   },
   
   gameContainer: {
-  height: "100vh",
+  height: "100dvh",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
